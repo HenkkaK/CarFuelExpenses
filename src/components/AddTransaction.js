@@ -8,8 +8,8 @@ export const AddTransaction = () => {
   const [gas, setGas] = useState(0);
   const [amount, setAmount] = useState(0);
   const [distance, setDistance] = useState(0);
-  const [carId, setCarId] = useState(0);
-  // const [car, setCar] = useState('');
+  // const [carId, setCarId] = useState(0);
+  const [car, setCar] = useState('');
 
   const { addTransaction } = useContext(GlobalContext);
 
@@ -18,8 +18,8 @@ export const AddTransaction = () => {
 
     const newTransaction = {
       id: Math.floor(Math.random() * 10000000),
-      carId,
-      // car,
+      // carId,
+      car,
       gas: +gas,
       amount: +amount,
       distance: +distance,
@@ -35,14 +35,10 @@ export const AddTransaction = () => {
       <form onSubmit={onSubmit}>
         <div className="form-control">
           <label htmlFor="carId">Car</label>
-          <select id="CarId">
+          <select value={car} onChange={(e) => setCar(e.target.value)}>
             <option>----</option>
             {cars.map((car) => (
-              <option
-                key={car}
-                value={car.id}
-                onSelect={(e) => setCarId(e.target.value)}
-              >
+              <option key={car.carName} value={car.carName}>
                 {car.carName}
               </option>
             ))}

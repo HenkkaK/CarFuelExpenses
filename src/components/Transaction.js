@@ -8,8 +8,8 @@ export const Transaction = ({ transaction }) => {
 
   return (
     <li className="minus">
+      <span>{transaction.car}</span>
       <span>{transaction.gas} L </span>
-      <span>{transaction.carId}</span>
       <span>{Math.abs(transaction.amount)} €</span>
       <span>{Math.abs(transaction.distance)} km</span>
       <button
