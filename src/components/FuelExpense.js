@@ -16,7 +16,7 @@ export const FuelExpense = () => {
     amounts.filter(item => item < 0).reduce((acc, item) => (acc += item), 0) * -1
   ).toFixed(2);
 
-   
+  const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
   return (
     <div className="inc-exp-container">
         <div>
@@ -25,7 +25,7 @@ export const FuelExpense = () => {
         </div>
         <div>
           <h4>Expenses (€)</h4>
-          <p className="money minus">{expense}</p>
+          <p className="money minus">{total}</p>
         </div>
       </div>
     // income and expenses now show up abaove the history
