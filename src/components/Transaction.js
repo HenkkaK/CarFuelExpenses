@@ -12,6 +12,8 @@ export const Transaction = ({ transaction }) => {
       <span>{transaction.gas} L </span>
       <span>{Math.abs(transaction.amount)} €</span>
       <span>{Math.abs(transaction.distance)} km</span>
+      <span>{Math.round(100*transaction.amount/(transaction.distance/100))/100} €/100km</span>
+      <span>{Math.round(100*transaction.gas/(transaction.distance/100))/100} l/100km</span>
       <button
         onClick={() => deleteTransaction(transaction.id)}
         className="delete-btn"

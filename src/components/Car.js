@@ -24,6 +24,8 @@ export const Car = ({ car }) => {
   const gas = calc(moreGas);
   const expense = calc(expenses);
   const kilometers = calc(distances);
+  const gasperhundred = Math.round(100*gas/(kilometers/100))/100;
+  const expenceperhundred = Math.round(100*expense/(kilometers/100))/100;
 
   return (
     <>
@@ -43,7 +45,15 @@ export const Car = ({ car }) => {
           <h4>Distance driven (km)</h4>
           <p className="money">{kilometers}</p>
         </div>
-      </div>
+        <div>
+          <h4>Fuel per 100km (L/100km)</h4>
+          <p className="money">{gasperhundred}</p>
+        </div>
+        <div>
+          <h4>Expenses per 100km (€/100km)</h4>
+          <p className="money">{expenceperhundred}</p>
+        </div>
+        </div>
     </>
 
     // <li>
