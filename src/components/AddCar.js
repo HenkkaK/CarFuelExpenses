@@ -8,6 +8,9 @@ export const AddCar = () => {
 
   const { addCar } = useContext(GlobalContext);
 
+  const [show, setShow] = useState(false);
+  const [arrow, setArrow] = useState(true);
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -22,37 +25,51 @@ export const AddCar = () => {
 
   return (
     <>
-      <h3>Add New Car</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-control">
-          <label htmlFor="text">Car Name</label>
-          <input
-            type="text"
-            value={carName}
-            onChange={(e) => setCarName(e.target.value)}
-            placeholder="Enter car Name"
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="text">Car Brand</label>
-          <input
-            type="text"
-            value={carBrand}
-            onChange={(e) => setCarBrand(e.target.value)}
-            placeholder="Enter car brand"
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="text">Car Model</label>
-          <input
-            type="text"
-            value={carModel}
-            onChange={(e) => setCarModel(e.target.value)}
-            placeholder="Enter car model"
-          />
-        </div>
-        <button className="btn">Add Car</button>
-      </form>
+      <h3>
+        Add New Car
+        <button
+          className="tglbtn"
+          onClick={() => {
+            setShow(!show);
+            setArrow(!arrow);
+          }}
+        >
+          {arrow ? '▼' : '▲'}
+        </button>
+      </h3>
+
+      {show ? (
+        <form onSubmit={onSubmit}>
+          <div className="form-control">
+            <label htmlFor="text">Car Name</label>
+            <input
+              type="text"
+              value={carName}
+              onChange={(e) => setCarName(e.target.value)}
+              placeholder="Enter car Name"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="text">Car Brand</label>
+            <input
+              type="text"
+              value={carBrand}
+              onChange={(e) => setCarBrand(e.target.value)}
+              placeholder="Enter car brand"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="text">Car Model</label>
+            <input
+              type="text"
+              value={carModel}
+              onChange={(e) => setCarModel(e.target.value)}
+              placeholder="Enter car model"
+            />
+          </div>
+          <button className="btn">Add Car</button>
+        </form>
+      ) : null}
     </>
   );
 };

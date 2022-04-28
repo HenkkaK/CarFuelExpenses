@@ -17,9 +17,9 @@ function App() {
         <TotalExpenses />
         <FuelExpense />
         <AddCar />
+        <AddTransaction />
         <CarList />
         <TransactionList />
-        <AddTransaction />
       </div>
     </GlobalProvider>
   );

@@ -27,58 +27,74 @@ export const AddTransaction = () => {
     addTransaction(newTransaction);
   };
 
+  const [show, setShow] = useState(false);
+  const [arrow, setArrow] = useState(true);
+
   const { cars } = useContext(GlobalContext);
 
   return (
     <>
-      <h3>Add new transaction</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-control">
-          <label htmlFor="carId">Car</label>
-          <select value={car} onChange={(e) => setCar(e.target.value)}>
-            <option>----</option>
-            {cars.map((car) => (
-              <option key={car.carName} value={car.carName}>
-                {car.carName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="form-control">
-          <label htmlFor="amount">Fuel (L) </label>
-          <input
-            type="number"
-            value={gas}
-            onChange={(e) => setGas(e.target.value)}
-            placeholder="Enter fuel in liters..."
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="amount">
-            Amount spent (€)
-            <br />
-          </label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount in euros..."
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="amount">
-            Distance driven (km)
-            <br />
-          </label>
-          <input
-            type="number"
-            value={distance}
-            onChange={(e) => setDistance(e.target.value)}
-            placeholder="Enter distance in kilometers..."
-          />
-        </div>
-        <button className="btn">Add transaction</button>
-      </form>
+      <h3>
+        Add new transaction
+        <button
+          className="tglbtn"
+          onClick={() => {
+            setShow(!show);
+            setArrow(!arrow);
+          }}
+        >
+          {arrow ? '▼' : '▲'}
+        </button>
+      </h3>
+      {show ? (
+        <form onSubmit={onSubmit}>
+          <div className="form-control">
+            <label htmlFor="carId">Car</label>
+            <select value={car} onChange={(e) => setCar(e.target.value)}>
+              <option>----</option>
+              {cars.map((car) => (
+                <option key={car.carName} value={car.carName}>
+                  {car.carName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-control">
+            <label htmlFor="amount">Fuel (L) </label>
+            <input
+              type="number"
+              value={gas}
+              onChange={(e) => setGas(e.target.value)}
+              placeholder="Enter fuel in liters..."
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="amount">
+              Amount spent (€)
+              <br />
+            </label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="Enter amount in euros..."
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="amount">
+              Distance driven (km)
+              <br />
+            </label>
+            <input
+              type="number"
+              value={distance}
+              onChange={(e) => setDistance(e.target.value)}
+              placeholder="Enter distance in kilometers..."
+            />
+          </div>
+          <button className="btn">Add transaction</button>
+        </form>
+      ) : null}
     </>
   );
 };
