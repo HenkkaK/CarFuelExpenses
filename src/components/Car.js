@@ -26,16 +26,36 @@ export const Car = ({ car }) => {
   const kilometers = calc(distances);
 
   return (
-    <li>
-      <p>{car.carName}</p>
-      <p>{car.carBrand}</p>
-      <p>{car.carModel}</p>
-      <p>{gas}</p>
-      <p>{expense}</p>
-      <p>{kilometers}</p>
-      <button onClick={() => deleteCar(car.id)} className="delete-btn">
-        x
-      </button>
-    </li>
+    <>
+      <h2>{car.carName}</h2>
+      <h4>{car.carBrand}</h4>
+      <h4>{car.carModel}</h4>
+      <div className="inc-exp-container">
+        <div>
+          <h4>Fuel (L)</h4>
+          <p className="money">{gas}</p>
+        </div>
+        <div>
+          <h4>Expenses (€)</h4>
+          <p className="money">{expense}</p>
+        </div>
+        <div>
+          <h4>Distance driven (km)</h4>
+          <p className="money">{kilometers}</p>
+        </div>
+      </div>
+    </>
+
+    // <li>
+    //   <p>{car.carName}</p>
+    //   <p>{car.carBrand}</p>
+    //   <p>{car.carModel}</p>
+    //   <p>{gas}</p>
+    //   <p>{expense}</p>
+    //   <p>{kilometers}</p>
+    //   <button onClick={() => deleteCar(car.id)} className="delete-btn">
+    //     x
+    //   </button>
+    // </li>
   ); // Nappia painamalla voi poistaa auton
 };

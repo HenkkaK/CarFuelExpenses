@@ -23,15 +23,15 @@ export const FuelExpense = () => {
     <div className="inc-exp-container">
       <div>
         <h4>Fuel (L)</h4>
-        <p className="money plus">{gas}</p>
+        <p className="money">{gas}</p>
       </div>
       <div>
         <h4>Expenses (€)</h4>
-        <p className="money minus">{expense}</p>
+        <p className="money">{expense}</p>
       </div>
       <div>
         <h4>Distance driven (km)</h4>
-        <p className="kilometers">{kilometers}</p>
+        <p className="money">{kilometers}</p>
       </div>
     </div>
     // income and expenses now show up abaove the history
