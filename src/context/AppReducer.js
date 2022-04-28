@@ -12,6 +12,16 @@ export default (state, action) => {
         ...state,
         transactions: [action.payload, ...state.transactions],
       };
+    case 'DELETE_CAR':
+      return {
+        ...state,
+        cars: state.cars.filter((car) => car.id !== action.payload),
+      };
+    case 'ADD_CAR':
+      return {
+        ...state,
+        cars: [action.payload, ...state.cars],
+      };
     default:
       return state;
   }

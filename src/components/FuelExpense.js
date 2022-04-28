@@ -5,35 +5,29 @@ import { GlobalContext } from '../context/GlobalState';
 export const FuelExpense = () => {
   const { transactions } = useContext(GlobalContext);
 
-  const amounts = transactions.map((transaction) => transaction.amount);
+  const calc = (item) =>
+    item
+      .filter((item) => item > 0)
+      .reduce((acc, item) => (acc += item), 0)
+      .toFixed(2);
+
+  const expenses = transactions.map((transaction) => transaction.amount);
   const moreGas = transactions.map((transaction) => transaction.gas);
   const distances = transactions.map((transaction) => transaction.distance);
 
-  const income = moreGas
-    .filter((item) => item > 0)
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
-
-  const expense = (
-    amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) *
-    -1
-  ).toFixed(2);
-
-  const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
-
-  const kilometers = distances
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
+  const gas = calc(moreGas);
+  const expense = calc(expenses);
+  const kilometers = calc(distances);
 
   return (
     <div className="inc-exp-container">
       <div>
         <h4>Fuel (L)</h4>
-        <p className="money plus">{income}</p>
+        <p className="money plus">{gas}</p>
       </div>
       <div>
         <h4>Expenses (€)</h4>
-        <p className="money minus">{total}</p>
+        <p className="money minus">{expense}</p>
       </div>
       <div>
         <h4>Distance driven (km)</h4>

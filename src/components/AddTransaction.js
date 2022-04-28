@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
+import { car } from './Car';
 // Uusi transaktio, Gas in liters + laatikko & Amount spent + laatikko,
 // lisäksi nappi jolla transaktio submitataan
 
@@ -7,6 +8,8 @@ export const AddTransaction = () => {
   const [gas, setGas] = useState(0);
   const [amount, setAmount] = useState(0);
   const [distance, setDistance] = useState(0);
+  const [carId, setCarId] = useState(0);
+  // const [car, setCar] = useState('');
 
   const { addTransaction } = useContext(GlobalContext);
 
@@ -15,6 +18,8 @@ export const AddTransaction = () => {
 
     const newTransaction = {
       id: Math.floor(Math.random() * 10000000),
+      carId,
+      // car,
       gas: +gas,
       amount: +amount,
       distance: +distance,
@@ -22,10 +27,27 @@ export const AddTransaction = () => {
     addTransaction(newTransaction);
   };
 
+  const { cars } = useContext(GlobalContext);
+
   return (
     <>
       <h3>Add new transaction</h3>
       <form onSubmit={onSubmit}>
+        <div className="form-control">
+          <label htmlFor="carId">Car</label>
+          <select id="CarId">
+            <option>----</option>
+            {cars.map((car) => (
+              <option
+                key={car}
+                value={car.id}
+                onSelect={(e) => setCarId(e.target.value)}
+              >
+                {car.carName}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="form-control">
           <label htmlFor="amount">Fuel (L) </label>
           <input

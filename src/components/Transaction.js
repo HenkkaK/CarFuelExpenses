@@ -9,7 +9,8 @@ export const Transaction = ({ transaction }) => {
   const sign = transaction.amount < 0 ? '-' : '-';
   return (
     <li className="minus">
-      {transaction.gas} L{' '}
+      <span>{transaction.gas} L </span>
+      <span>{transaction.carId}</span>
       <span>
         {sign}
         {Math.abs(transaction.amount)} €

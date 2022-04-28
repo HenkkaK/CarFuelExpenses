@@ -4,6 +4,7 @@ import AppReducer from './AppReducer';
 //Initial state
 const initialState = {
   transactions: [],
+  cars: [],
 };
 
 // Creating context
@@ -28,12 +29,29 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function addCar(car) {
+    dispatch({
+      type: 'ADD_CAR',
+      payload: car,
+    });
+  }
+
+  function deleteCar(id) {
+    dispatch({
+      type: 'DELETE_CAR',
+      payload: id,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
+        cars: state.cars,
         deleteTransaction,
         addTransaction,
+        addCar,
+        deleteCar,
       }}
     >
       {children}

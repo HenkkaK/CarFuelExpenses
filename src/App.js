@@ -5,6 +5,7 @@ import { FuelExpense } from './components/FuelExpense';
 import { TransactionList } from './components/TransactionList';
 import { AddTransaction } from './components/AddTransaction';
 import { AddCar } from './components/AddCar';
+import { CarList } from './components/CarList';
 
 import { GlobalProvider } from './context/GlobalState';
 
@@ -16,6 +17,7 @@ function App() {
         <TotalExpenses />
         <FuelExpense />
         <AddCar />
+        <CarList />
         <TransactionList />
         <AddTransaction />
       </div>
