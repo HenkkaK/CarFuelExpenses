@@ -6,6 +6,7 @@ import { GlobalContext } from '../context/GlobalState';
 export const AddTransaction = () => {
   const [gas, setGas] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [distance, setDistance] = useState(0);
 
   const { addTransaction } = useContext(GlobalContext);
 
@@ -14,8 +15,9 @@ export const AddTransaction = () => {
 
     const newTransaction = {
       id: Math.floor(Math.random() * 10000000),
-      gas,
+      gas: +gas,
       amount: +amount,
+      distance: +distance,
     };
     addTransaction(newTransaction);
   };
@@ -23,14 +25,14 @@ export const AddTransaction = () => {
   return (
     <>
       <h3>Add new transaction</h3>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="form-control">
-          <label htmlFor="text">Gas (L) </label>
+          <label htmlFor="amount">Fuel (L) </label>
           <input
             type="number"
             value={gas}
             onChange={(e) => setGas(e.target.value)}
-            placeholder="Enter gas in liters..."
+            placeholder="Enter fuel in liters..."
           />
         </div>
         <div className="form-control">
@@ -43,6 +45,18 @@ export const AddTransaction = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount in euros..."
+          />
+        </div>
+        <div className="form-control">
+          <label htmlFor="amount">
+            Distance driven (km)
+            <br />
+          </label>
+          <input
+            type="number"
+            value={distance}
+            onChange={(e) => setDistance(e.target.value)}
+            placeholder="Enter distance in kilometers..."
           />
         </div>
         <button className="btn">Add transaction</button>

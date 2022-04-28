@@ -6,8 +6,10 @@ export const FuelExpense = () => {
   const { transactions } = useContext(GlobalContext);
 
   const amounts = transactions.map((transaction) => transaction.amount);
+  const moreGas = transactions.map((transaction) => transaction.gas);
+  const distances = transactions.map((transaction) => transaction.distance);
 
-  const income = amounts
+  const income = moreGas
     .filter((item) => item > 0)
     .reduce((acc, item) => (acc += item), 0)
     .toFixed(2);
@@ -17,28 +19,27 @@ export const FuelExpense = () => {
     -1
   ).toFixed(2);
 
+  const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+
+  const kilometers = distances
+    .reduce((acc, item) => (acc += item), 0)
+    .toFixed(2);
+
   return (
     <div className="inc-exp-container">
       <div>
         <h4>Fuel (L)</h4>
-        <p className="money plus">0.00</p>
+        <p className="money plus">{income}</p>
       </div>
       <div>
         <h4>Expenses (€)</h4>
-        <p className="money minus">{expense}</p>
+        <p className="money minus">{total}</p>
       </div>
       <div>
-        <h4>Distance (km)</h4>
-        <p className="money plus">0.00</p>
-      </div>
-      <div>
-        <h4>Average (€/100 km)</h4>
-        <p className="money minus">0.00</p>
-      </div>
-      <div>
-        <h4>Average (L/100 km)</h4>
-        <p className="money plus">0.00</p>
+        <h4>Distance driven (km)</h4>
+        <p className="kilometers">{kilometers}</p>
       </div>
     </div>
+    // income and expenses now show up abaove the history
   );
 };
