@@ -6,7 +6,8 @@ export const FuelExpense = () => {
   const { transactions } = useContext(GlobalContext);
 
   const amounts = transactions.map(transaction => transaction.amount);
-  const moreGas = transactions.map(transaction => transaction.gas)
+  const moreGas = transactions.map(transaction => transaction.gas);
+  const distances = transactions.map(transaction => transaction.distance);
 
   const income = moreGas
     .filter(item => item > 0)
@@ -18,6 +19,9 @@ export const FuelExpense = () => {
   ).toFixed(2);
 
   const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+
+  const kilometers = distances.reduce((acc, item) => (acc += item), 0).toFixed(2);
+
   return (
     <div className="inc-exp-container">
         <div>
@@ -27,6 +31,10 @@ export const FuelExpense = () => {
         <div>
           <h4>Expenses (€)</h4>
           <p className="money minus">{total}</p>
+        </div>
+        <div>
+          <h4>Distance driven (km)</h4>
+          <p className="kilometers">{kilometers}</p>
         </div>
       </div>
     // income and expenses now show up abaove the history
