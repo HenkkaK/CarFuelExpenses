@@ -25,6 +25,11 @@ export const AddTransaction = () => {
       distance: +distance,
     };
     addTransaction(newTransaction);
+    
+    setGas(0);
+    setAmount(0);
+    setDistance(0);
+    setCar('');
   };
 
   const [show, setShow] = useState(false);

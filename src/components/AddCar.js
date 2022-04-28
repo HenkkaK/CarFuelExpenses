@@ -20,7 +20,11 @@ export const AddCar = () => {
       carBrand,
       carModel,
     };
+    
     addCar(newCar);
+    setCarName('');
+    setCarBrand('');
+    setCarModel('');
   };
 
   return (
